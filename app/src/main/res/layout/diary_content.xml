@@ -29,12 +29,14 @@
 
             <TextView
                 android:id="@+id/breakfast_content"
-                android:layout_width="279dp"
+                android:layout_width="281dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
+                android:gravity="center"
                 android:text="TextView"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +45,13 @@
             <TextView
                 android:id="@+id/lunch_content"
                 android:layout_width="280dp"
-                android:layout_height="60dp"
+                android:layout_height="62dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:text="TextView"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,55 +59,62 @@
 
             <TextView
                 android:id="@+id/dinner_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
-                android:layout_marginTop="44dp"
+                android:layout_width="276dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="124dp"
+                android:gravity="center"
                 android:text="TextView"
+                android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lunch_content" />
 
             <TextView
                 android:id="@+id/fat_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="172dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="276dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="124dp"
+                android:gravity="center"
                 android:text="TextView"
+                android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dinner_content" />
 
             <TextView
                 android:id="@+id/water_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
-                android:layout_marginTop="40dp"
+                android:layout_width="278dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="124dp"
+                android:gravity="center"
                 android:text="TextView"
+                android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fat_content" />
 
             <TextView
                 android:id="@+id/editText"
 
-                android:layout_width="354dp"
-                android:layout_height="83dp"
+                android:layout_width="399dp"
+                android:layout_height="98dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
 
+                android:layout_marginTop="4dp"
                 android:background="#ffffff"
-                android:singleLine="false"
 
-                android:text="Name"
+                android:singleLine="false"
+                android:text="Diary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="86dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText">
 
@@ -310,29 +321,27 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"></FrameLayout>
+                    android:layout_height="2dp">
 
-                <Button
-                    android:id="@+id/water_btn"
-                    android:layout_width="88dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/border"
-                    android:text="물" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"></FrameLayout>
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/exercise_btn"
-                    android:layout_width="88dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/border"
                     android:text="운동" />
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp">
+
+                </FrameLayout>
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -350,7 +359,7 @@
                     android:text="칼로리" />
 
                 <FrameLayout
-                    android:layout_width="10dp"
+                    android:layout_width="76dp"
                     android:layout_height="match_parent"></FrameLayout>
 
                 <TextView
