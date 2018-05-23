@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DiaryActivity" android:label="DiaryActivity" android:theme="@style/AppTheme.NoActionBar"> </activity>
     </application>
 
 </manifest>
