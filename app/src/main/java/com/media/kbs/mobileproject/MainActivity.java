@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -51,14 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent) ;
             }
         });
-        Button button3 = (Button) findViewById(R.id.button3) ;
-        button3.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DiaryActivity.class) ;
-                startActivity(intent) ;
-            }
-        });
+
 
 
 
