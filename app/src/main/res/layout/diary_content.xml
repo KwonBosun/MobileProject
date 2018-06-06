@@ -29,66 +29,63 @@
 
             <TextView
                 android:id="@+id/breakfast_content"
-                android:layout_width="281dp"
+                android:layout_width="280dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="TextView"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.99"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
             <TextView
                 android:id="@+id/lunch_content"
                 android:layout_width="280dp"
-                android:layout_height="62dp"
+                android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="TextView"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.991"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/breakfast_content" />
 
             <TextView
                 android:id="@+id/dinner_content"
-                android:layout_width="276dp"
+                android:layout_width="280dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="124dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="TextView"
                 android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.99"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lunch_content" />
 
             <TextView
-                android:id="@+id/fat_content"
-                android:layout_width="276dp"
-                android:layout_height="63dp"
-                android:layout_marginStart="124dp"
+                android:id="@+id/water_content"
+                android:layout_width="280dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="TextView"
                 android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.99"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dinner_content" />
-
-            <TextView
-                android:id="@+id/water_content"
-                android:layout_width="278dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="124dp"
-                android:gravity="center"
-                android:text="TextView"
-                android:textAlignment="center"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fat_content" />
 
             <TextView
                 android:id="@+id/editText"
@@ -307,17 +304,6 @@
                     android:layout_height="60dp"
                     android:background="@drawable/border"
                     android:text="저녁" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"></FrameLayout>
-
-                <Button
-                    android:id="@+id/fat_btn"
-                    android:layout_width="88dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/border"
-                    android:text="간식" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
