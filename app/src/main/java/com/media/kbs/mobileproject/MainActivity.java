@@ -2,6 +2,7 @@ package com.media.kbs.mobileproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -9,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
     private MaterialCalendarView Calendar;
@@ -21,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Calendar = findViewById(R.id.calendar);
-//        Calendar.setOnDateChangedListener(new OnDateSelectedListener() {
-//            @Override
-//            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-//                Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        Calendar.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         //화면 전환 확인용 버튼 3개입니다. 나중에 기능 만들면 지워도 돼요. xml의 버튼까지 지워주세요
@@ -48,14 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent) ;
             }
         });
-        Button button3 = (Button) findViewById(R.id.button3) ;
-        button3.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DiaryActivity.class) ;
-                startActivity(intent) ;
-            }
-        });
+
 
 
 

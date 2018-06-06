@@ -25,7 +25,7 @@
         <activity
             android:name=".TrainingListActivity">
         </activity>
-        <activity android:name=".DiaryActivity" android:label="DiaryActivity" > </activity>
+        <activity android:name=".DiaryActivity" android:label="DiaryActivity" android:parentActivityName=".MainActivity"> </activity>
     </application>
 
 </manifest>
