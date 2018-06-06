@@ -25,7 +25,7 @@
         <activity
             android:name=".TrainingListActivity">
         </activity>
-        <activity android:name=".DiaryActivity" android:label="DiaryActivity" android:theme="@style/AppTheme.NoActionBar"> </activity>
+        <activity android:name=".DiaryActivity" android:label="DiaryActivity" > </activity>
     </application>
 
 </manifest>
