@@ -14,8 +14,11 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
     private MaterialCalendarView Calendar;
+    HashMap<String, String> udon = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         //화면 전환 확인용 버튼 3개입니다. 나중에 기능 만들면 지워도 돼요. xml의 버튼까지 지워주세요
