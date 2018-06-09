@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                //DB의 날짜선택 수정
                 Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
                 startActivity(intent);
-
             }
         });
 

@@ -54,6 +54,7 @@ public class TrainingListActivity  extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //DB에 저장되있는 날짜/운동선택을 기준으로 선택된 운동을 DB의 날짜별 운동선택에 저장
                 Toast.makeText(getBaseContext(), trainingmenu[+position],
                         Toast.LENGTH_SHORT).show();
             }

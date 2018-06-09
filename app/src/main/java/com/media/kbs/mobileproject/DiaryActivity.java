@@ -49,7 +49,7 @@ public class DiaryActivity extends AppCompatActivity{
         exercise_btn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DB에 운동선택과 운동종류 전달
+                //DB에 운동선택 전달
                 Intent intent = new Intent(DiaryActivity.this, TrainingListActivity.class) ;
                 startActivity(intent) ;
             }
