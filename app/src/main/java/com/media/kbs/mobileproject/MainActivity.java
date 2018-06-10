@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                //DB의 날짜선택 수정
                 Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FoodListActivity.class) ;
+                Intent intent = new Intent(MainActivity.this, ListActivity.class) ;
                 startActivity(intent) ;
             }
         });

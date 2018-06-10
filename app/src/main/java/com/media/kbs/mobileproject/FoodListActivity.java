@@ -55,7 +55,6 @@ public class FoodListActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //DB에 저장되있는 날짜/식단선택/식단종류를 기준으로 선택된 음식을 DB의 날짜별 식단선택에 저장
                 Toast.makeText(getBaseContext(), foodmenu[+position],
                         Toast.LENGTH_SHORT).show();
             }
