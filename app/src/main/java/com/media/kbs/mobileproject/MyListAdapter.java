@@ -13,6 +13,11 @@ import java.util.ArrayList;
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ItemViewHolder>  {
     Context context;
     ArrayList<ListItem> listItemArrayList;
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public MyListAdapter(Context context, ArrayList<ListItem> listItemArrayList) {
         this.context = context;
@@ -36,7 +41,13 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ItemViewHo
     @Override
     public void onBindViewHolder(@NonNull MyListAdapter.ItemViewHolder holder, final int position) {
         holder.foodName.setText(listItemArrayList.get(position).getFoodName());
-        holder.totalKcal.setText(listItemArrayList.get(position).getTotalKcal());
+        holder.totalKcal.setText(listItemArrayList.get(position).getTotalKcal()+"kcal");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(position);
+            }
+        });
     }
 
     @Override

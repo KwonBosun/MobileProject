@@ -14,11 +14,13 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private MaterialCalendarView Calendar;
-    HashMap<String, String> udon = new HashMap<String, String>();
+    private String SelectedDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         Calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Date date1 = new Date(date.getCalendar().getTimeInMillis());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd");
                 Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
+                intent.putExtra("date", sdf.format(date1));
                 startActivity(intent);
-
             }
         });
 

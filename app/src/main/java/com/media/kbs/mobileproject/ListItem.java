@@ -2,57 +2,80 @@ package com.media.kbs.mobileproject;
 
 public class ListItem {
     private String foodName;
-    private String totalKcal;
-    private String carbonKcal;
-    private String proteinKcal;
-    private String fatKcal;
-    private String sodiumKcal;
+    private String nameBreak;
+    private String nameLunch;
+    private String nameDinner;
+    private double totalKcal;
+    private double carbonKcal;
+    private double proteinKcal;
+    private double fatKcal;
+    private double sodiumKcal;
 
-    public String getFoodName() {
-        return foodName;
+    public String getFoodName(){return foodName;
+    }
+    public void setFoodName(String foodName){this.foodName=foodName;}
+
+    public String getNameBreak() {
+        return nameBreak;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setNameBreak(String nameBreak) {
+        this.nameBreak = nameBreak;
     }
 
-    public String getTotalKcal() {
+    public String getNameLunch() {
+        return nameLunch;
+    }
+
+    public void setNameLunch(String nameLunch) {
+        this.nameLunch = nameLunch;
+    }
+
+    public String getNameDinner() {
+        return nameDinner;
+    }
+
+    public void setNameDinner(String nameDinner) {
+        this.nameDinner = nameDinner;
+    }
+
+    public double getTotalKcal() {
         return totalKcal;
     }
 
-    public void setTotalKcal(String totalKcal) {
+    public void setTotalKcal(double totalKcal) {
         this.totalKcal = totalKcal;
     }
 
-    public String getCarbonKcal() {
+    public double getCarbonKcal() {
         return carbonKcal;
     }
 
-    public void setCarbonKcal(String carbonKcal) {
+    public void setCarbonKcal(double carbonKcal) {
         this.carbonKcal = carbonKcal;
     }
 
-    public String getProteinKcal() {
+    public double getProteinKcal() {
         return proteinKcal;
     }
 
-    public void setProteinKcal(String proteinKcal) {
+    public void setProteinKcal(double proteinKcal) {
         this.proteinKcal = proteinKcal;
     }
 
-    public String getFatKcal() {
+    public double getFatKcal() {
         return fatKcal;
     }
 
-    public void setFatKcal(String fatKcal) {
+    public void setFatKcal(double fatKcal) {
         this.fatKcal = fatKcal;
     }
 
-    public String getSodiumKcal() {
+    public double getSodiumKcal() {
         return sodiumKcal;
     }
 
-    public void setSodiumKcal(String sodiumKcal) {
+    public void setSodiumKcal(double sodiumKcal) {
         this.sodiumKcal = sodiumKcal;
     }
 }

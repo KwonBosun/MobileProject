@@ -1,13 +1,22 @@
 package com.media.kbs.mobileproject;
 
+import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity{
@@ -16,7 +25,6 @@ public class ListActivity extends AppCompatActivity{
     private ListItem listItem;
     public ArrayList<ListItem> listItemArrayList;
     public RecyclerView recyclerView;
-
 
 
 
@@ -31,38 +39,72 @@ public class ListActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(layoutManager);
         listItemArrayList = new ArrayList<ListItem>();
 
-        listItem = new ListItem();
-        listItem.setFoodName("라면");
-        listItem.setTotalKcal("365" + "kcal");
-        listItem.setCarbonKcal("30" + "kcal");
-        listItem.setProteinKcal("1" + "kcal");
-        listItem.setFatKcal("3" + "kcal");
-        listItem.setSodiumKcal("2000" + "mg");
-        listItemArrayList.add(listItem);
-
-
-        final ListDialogFragment listDialogFragment = new ListDialogFragment();
-
+        foodListParsing();
 
         myListAdapter = new MyListAdapter(ListActivity.this, listItemArrayList);
-
-        //리스너 동작 부분입니다.
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Toast.makeText(getApplicationContext(),position+"번 째 아이템 클릭", Toast.LENGTH_SHORT).show();
-                        //선택한 포지션 번호로 BD에서 Diary에다 계산
-                        //액티비티 닫고 Diary로 돌아가기
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        Toast.makeText(getApplicationContext(),position+"번 째 아이템 롱 클릭",Toast.LENGTH_SHORT).show();
-                        listDialogFragment.show(getFragmentManager(),"ListDialogFragment");
-                    }
-                }));
-
+        myListAdapter.setListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(ListActivity.this, DiaryActivity.class);
+                intent.putExtra("name",listItemArrayList.get(position).getFoodName());
+                intent.putExtra("total",listItemArrayList.get(position).getTotalKcal());
+                intent.putExtra("carbon",listItemArrayList.get(position).getCarbonKcal());
+                intent.putExtra("protein",listItemArrayList.get(position).getProteinKcal());
+                intent.putExtra("fat",listItemArrayList.get(position).getFatKcal());
+                intent.putExtra("sodium",listItemArrayList.get(position).getSodiumKcal());
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
         recyclerView.setAdapter(myListAdapter);
+    }
+    public void foodListParsing(){
+        String response = "";
+        try {
+            AssetManager assetManager = getResources().getAssets();
+            InputStream inStream = assetManager.open("foodList.json", AssetManager.ACCESS_BUFFER);
+
+            String line = "";
+            InputStreamReader isr = new InputStreamReader(inStream);
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null)
+            {
+                sb.append(line + "\n");
+            }
+            response = sb.toString();
+            isr.close();
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("items");
+            for(int i=0;i<jsonArray.length();i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String parsingFoodName = item.getString("foodName");
+                double parsingFoodCal = Double.parseDouble(item.getString("foodCal"));
+                double parsingFoodCarbon = Double.parseDouble(item.getString("foodCarbon"));
+                double parsingFoodProtein = Double.parseDouble(item.getString("foodProtein"));
+                double parsingFoodFat = Double.parseDouble(item.getString("foodFat"));
+                double parsingFoodSodium = Double.parseDouble(item.getString("foodSodium"));
+
+                listItem = new ListItem();
+                listItem.setFoodName(parsingFoodName);
+                listItem.setTotalKcal(parsingFoodCal);
+                listItem.setCarbonKcal(parsingFoodCarbon);
+                listItem.setProteinKcal(parsingFoodProtein);
+                listItem.setFatKcal(parsingFoodFat);
+                listItem.setSodiumKcal(parsingFoodSodium);
+                listItemArrayList.add(listItem);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
