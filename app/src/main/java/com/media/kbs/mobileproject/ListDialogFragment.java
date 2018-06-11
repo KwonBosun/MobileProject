@@ -25,7 +25,7 @@ public class ListDialogFragment extends DialogFragment {
                                 Toast.makeText(getActivity(), choice[0], Toast.LENGTH_SHORT).show();
 
                             case 1:
-                                //수정
+                                //삭제
                                 Toast.makeText(getActivity(), choice[1], Toast.LENGTH_SHORT).show();
                         }
                         dismiss();

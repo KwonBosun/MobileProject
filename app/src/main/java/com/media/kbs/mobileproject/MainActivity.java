@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TrainingListActivity.class) ;
+                Intent intent = new Intent(MainActivity.this, ChangeFoodListActivity.class) ;
                 startActivity(intent) ;
             }
         });
