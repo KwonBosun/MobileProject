@@ -48,6 +48,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ItemViewHo
                 listener.onItemClick(position);
             }
         });
+
+
     }
 
     @Override

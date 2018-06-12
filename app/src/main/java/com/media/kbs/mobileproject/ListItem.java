@@ -5,11 +5,13 @@ public class ListItem {
     private String nameBreak;
     private String nameLunch;
     private String nameDinner;
+    private String nameExer;
     private double totalKcal;
     private double carbonKcal;
     private double proteinKcal;
     private double fatKcal;
     private double sodiumKcal;
+    private double exerKcal;
 
     public String getFoodName(){return foodName;
     }
@@ -77,5 +79,19 @@ public class ListItem {
 
     public void setSodiumKcal(double sodiumKcal) {
         this.sodiumKcal = sodiumKcal;
+    }
+
+    public double getExerKcal() {
+        return exerKcal;
+    }
+
+    public void setExerKcal(double exerKcal) {
+        this.exerKcal = exerKcal;
+    }
+
+    public String getNameExer() { return nameExer; }
+
+    public void setNameExer(String nameExer) {
+        this.nameExer = nameExer;
     }
 }

@@ -24,9 +24,11 @@ public class DiaryActivity extends AppCompatActivity {
     private Button breakButton;
     private Button lunchButton;
     private Button dinnerButton;
+    private Button exerButton;
     private final static int LIST_BREAK = 1;
     private final static int LIST_LUNCH = 2;
     private final static int LIST_DINNER = 3;
+    private final static int LIST_EXERCISE =4;
     private TextView breakfastText;
     private TextView lunchText;
     private TextView dinnerText;
@@ -35,6 +37,7 @@ public class DiaryActivity extends AppCompatActivity {
     private TextView FatWeight;
     private TextView SodiumWeight;
     private TextView Kcal;
+    private TextView ExerName;
     private double calTotal = 0;
     private double carbonTotal = 0;
     private double proteinTotal = 0;
@@ -55,17 +58,21 @@ public class DiaryActivity extends AppCompatActivity {
     private double proteinDinner = 0;
     private double fatDinner = 0;
     private double sodiumDinner = 0;
+    private double exerKcal=0;
+    private double exerTotal=0;
 
     private String getTime = "";
-    private String date;
-    DBHelper dbHelper = null;
+    public static String date;
+    public static DBHelper dbHelper = null;
     private ListItem listItem_b;
     private ListItem listItem_l;
     private ListItem listItem_d;
+    private ListItem listItem_e;
     private String foodname_break = "";
     private String foodname_lunch = "";
     private String foodname_dinner = "";
     private String breakTotal = "";
+    private String exerName="";
     String totalSum = "";
 
     @Override
@@ -100,6 +107,8 @@ public class DiaryActivity extends AppCompatActivity {
         breakButton = findViewById(R.id.breakfast_btn);
         lunchButton = findViewById(R.id.lunch_btn);
         dinnerButton = findViewById(R.id.dinner_btn);
+        exerButton=findViewById(R.id.exercise_btn);
+        ExerName=findViewById(R.id.exer_content);
 
         load();
         breakButton.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +130,12 @@ public class DiaryActivity extends AppCompatActivity {
                 startActivityForResult(new Intent(DiaryActivity.this, ListActivity.class), LIST_DINNER);
             }
         });
+        exerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(DiaryActivity.this, TrainingListActivity.class), LIST_EXERCISE);
+            }
+        });
 
 
     }
@@ -129,6 +144,7 @@ public class DiaryActivity extends AppCompatActivity {
         listItem_b = dbHelper.getDataInfo("breakfast");
         listItem_l = dbHelper.getDataInfo("lunch");
         listItem_d = dbHelper.getDataInfo("dinner");
+        listItem_e = dbHelper.getDataInfo("exercise");
         if (listItem_l != null && listItem_d != null && listItem_b != null) {
             carbonTotal = listItem_b.getCarbonKcal() + listItem_l.getCarbonKcal() + listItem_d.getCarbonKcal();
             proteinTotal = listItem_b.getProteinKcal() + listItem_l.getProteinKcal() + listItem_d.getProteinKcal();
@@ -143,11 +159,11 @@ public class DiaryActivity extends AppCompatActivity {
             lunchText.setText(lunch);
             dinnerText.setText(dinner);
 
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
         } else if (listItem_b != null && listItem_l != null) {
             carbonTotal = listItem_b.getCarbonKcal() + listItem_l.getCarbonKcal();
             proteinTotal = listItem_b.getProteinKcal() + listItem_l.getProteinKcal();
@@ -159,11 +175,11 @@ public class DiaryActivity extends AppCompatActivity {
             String lunch = listItem_l.getNameLunch();
             breakfastText.setText(breakfast);
             lunchText.setText(lunch);
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
         } else if (listItem_b != null && listItem_d != null) {
             carbonTotal = listItem_b.getCarbonKcal() + listItem_d.getCarbonKcal();
             proteinTotal = listItem_b.getProteinKcal() + listItem_d.getProteinKcal();
@@ -193,11 +209,11 @@ public class DiaryActivity extends AppCompatActivity {
 
             lunchText.setText(lunch);
             dinnerText.setText(dinner);
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
         } else if (listItem_b != null) {
             carbonTotal = listItem_b.getCarbonKcal();
             proteinTotal = listItem_b.getProteinKcal();
@@ -208,11 +224,11 @@ public class DiaryActivity extends AppCompatActivity {
             String breakfast = listItem_b.getNameBreak();
             breakfastText.setText(breakfast);
 
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
         } else if (listItem_l != null) {
             carbonTotal = listItem_l.getCarbonKcal();
             proteinTotal = listItem_l.getProteinKcal();
@@ -224,11 +240,11 @@ public class DiaryActivity extends AppCompatActivity {
 
             lunchText.setText(lunch);
 
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
         } else if (listItem_d != null) {
             carbonTotal = listItem_d.getCarbonKcal();
             proteinTotal = listItem_d.getProteinKcal();
@@ -239,11 +255,144 @@ public class DiaryActivity extends AppCompatActivity {
             String dinner = listItem_d.getNameDinner();
 
             dinnerText.setText(dinner);
-            Kcal.setText(calTotal + "kcal");
-            CarbonWeight.setText(carbonTotal + "g");
-            ProteinWeight.setText(proteinTotal + "g");
-            FatWeight.setText(fatTotal + "g");
-            SodiumWeight.setText(sodiumTotal + "mg");
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        }
+        if (listItem_l != null && listItem_d != null && listItem_b != null&&listItem_e!=null) {
+            carbonTotal = listItem_b.getCarbonKcal() + listItem_l.getCarbonKcal() + listItem_d.getCarbonKcal();
+            proteinTotal = listItem_b.getProteinKcal() + listItem_l.getProteinKcal() + listItem_d.getProteinKcal();
+            fatTotal = listItem_b.getFatKcal() + listItem_l.getFatKcal() + listItem_d.getFatKcal();
+            sodiumTotal = listItem_b.getSodiumKcal() + listItem_l.getSodiumKcal() + listItem_d.getSodiumKcal();
+            calTotal = listItem_b.getTotalKcal() + listItem_l.getTotalKcal() + listItem_d.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+
+
+            String breakfast = listItem_b.getNameBreak();
+            String lunch = listItem_l.getNameLunch();
+            String dinner = listItem_d.getNameDinner();
+            String exercise = listItem_e.getNameExer();
+            breakfastText.setText(breakfast);
+            lunchText.setText(lunch);
+            dinnerText.setText(dinner);
+
+
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_b != null && listItem_l != null&&listItem_e!=null) {
+            carbonTotal = listItem_b.getCarbonKcal() + listItem_l.getCarbonKcal();
+            proteinTotal = listItem_b.getProteinKcal() + listItem_l.getProteinKcal();
+            fatTotal = listItem_b.getFatKcal() + listItem_l.getFatKcal();
+            sodiumTotal = listItem_b.getSodiumKcal() + listItem_l.getSodiumKcal();
+            calTotal = listItem_b.getTotalKcal() + listItem_l.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String breakfast = listItem_b.getNameBreak();
+            String lunch = listItem_l.getNameLunch();
+            String exercise = listItem_e.getNameExer();
+
+            breakfastText.setText(breakfast);
+            lunchText.setText(lunch);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_b != null && listItem_d != null&&listItem_e!=null) {
+            carbonTotal = listItem_b.getCarbonKcal() + listItem_d.getCarbonKcal();
+            proteinTotal = listItem_b.getProteinKcal() + listItem_d.getProteinKcal();
+            fatTotal = listItem_b.getFatKcal() + listItem_d.getFatKcal();
+            sodiumTotal = listItem_b.getSodiumKcal() + listItem_d.getSodiumKcal();
+            calTotal = listItem_b.getTotalKcal() + listItem_d.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String breakfast = listItem_b.getNameBreak();
+            String dinner = listItem_d.getNameDinner();
+            String exercise = listItem_e.getNameExer();
+
+            breakfastText.setText(breakfast);
+            dinnerText.setText(dinner);
+            ExerName.setText(exercise);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_l != null && listItem_d != null&&listItem_e!=null) {
+            carbonTotal = listItem_l.getCarbonKcal() + listItem_d.getCarbonKcal();
+            proteinTotal = listItem_l.getProteinKcal() + listItem_d.getProteinKcal();
+            fatTotal = listItem_l.getFatKcal() + listItem_d.getFatKcal();
+            sodiumTotal = listItem_l.getSodiumKcal() + listItem_d.getSodiumKcal();
+            calTotal = listItem_l.getTotalKcal() + listItem_l.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String lunch = listItem_l.getNameLunch();
+            String dinner = listItem_d.getNameDinner();
+            String exercise = listItem_e.getNameExer();
+
+            ExerName.setText(exercise);
+            lunchText.setText(lunch);
+            dinnerText.setText(dinner);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_b != null&&listItem_e!=null) {
+            carbonTotal = listItem_b.getCarbonKcal();
+            proteinTotal = listItem_b.getProteinKcal();
+            fatTotal = listItem_b.getFatKcal();
+            sodiumTotal = listItem_b.getSodiumKcal();
+            calTotal = listItem_b.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String breakfast = listItem_b.getNameBreak();
+            breakfastText.setText(breakfast);
+            String exercise = listItem_e.getNameExer();
+
+            ExerName.setText(exercise);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_l != null&&listItem_e!=null) {
+            carbonTotal = listItem_l.getCarbonKcal();
+            proteinTotal = listItem_l.getProteinKcal();
+            fatTotal = listItem_l.getFatKcal();
+            sodiumTotal = listItem_l.getSodiumKcal();
+            calTotal = listItem_l.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String lunch = listItem_l.getNameLunch();
+            String exercise = listItem_e.getNameExer();
+
+            lunchText.setText(lunch);
+            ExerName.setText(exercise);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        } else if (listItem_d != null&&listItem_e!=null) {
+            carbonTotal = listItem_d.getCarbonKcal();
+            proteinTotal = listItem_d.getProteinKcal();
+            fatTotal = listItem_d.getFatKcal();
+            sodiumTotal = listItem_d.getSodiumKcal();
+            calTotal = listItem_d.getTotalKcal();
+            exerTotal=listItem_e.getExerKcal();
+            String dinner = listItem_d.getNameDinner();
+            String exercise = listItem_e.getNameExer();
+            ExerName.setText(exercise);
+            dinnerText.setText(dinner);
+            Kcal.setText(String.format("%.2f", calTotal) + "kcal");
+            CarbonWeight.setText(String.format("%.2f", carbonTotal) + "g");
+            ProteinWeight.setText(String.format("%.2f", proteinTotal) + "g");
+            FatWeight.setText(String.format("%.2f", fatTotal) + "g");
+            SodiumWeight.setText(String.format("%.2f", sodiumTotal) + "mg");
+        }else if (listItem_e!=null){
+            String exercise = listItem_e.getNameExer();
+            ExerName.setText(exercise);
         }
     }
 
@@ -298,7 +447,7 @@ public class DiaryActivity extends AppCompatActivity {
                 }
 
 
-                dbHelper.insertDataInfo("breakfast", calBreak, carbonBreak, proteinBreak, fatBreak, sodiumBreak, breakTotal, foodname_lunch, foodname_dinner);
+                dbHelper.insertDataInfo("breakfast", calBreak, carbonBreak, proteinBreak, fatBreak, sodiumBreak, breakTotal, foodname_lunch, foodname_dinner,exerName,exerKcal);
 
                 calTotal += calBreak;
                 carbonTotal += carbonBreak;
@@ -306,14 +455,6 @@ public class DiaryActivity extends AppCompatActivity {
                 fatTotal += fatBreak;
                 sodiumTotal += sodiumBreak;
 
-
-//                breakfastText.setText(breakTotal);
-//
-//                Kcal.setText(calTotal + "kcal");
-//                CarbonWeight.setText(carbonTotal + "g");
-//                ProteinWeight.setText(proteinTotal + "g");
-//                FatWeight.setText(fatTotal + "g");
-//                SodiumWeight.setText(sodiumTotal + "mg");
             }
         }
         if (requestCode == LIST_LUNCH) {
@@ -340,26 +481,15 @@ public class DiaryActivity extends AppCompatActivity {
                     sodiumLunch += data.getDoubleExtra("sodium", 0);
                 }
 
-
-
                     calTotal += calLunch;
                     carbonTotal += carbonLunch;
                     proteinTotal += proteinLunch;
                     fatTotal += fatLunch;
                     sodiumTotal += sodiumLunch;
-                    dbHelper.insertDataInfo("lunch", calLunch, carbonLunch, proteinLunch, fatLunch, sodiumLunch, breakTotal, foodname_lunch, foodname_dinner);
+                    dbHelper.insertDataInfo("lunch", calBreak, carbonBreak, proteinBreak, fatBreak, sodiumBreak, breakTotal, foodname_lunch, foodname_dinner,exerName,exerKcal);
 
 
-                    //
 
-//
-//                      lunchText.setText(foodname_lunch);
-////
-////                    Kcal.setText(calTotal + "kcal");
-////                    CarbonWeight.setText(carbonTotal + "g");
-////                    ProteinWeight.setText(proteinTotal + "g");
-////                    FatWeight.setText(fatTotal + "g");
-////                    SodiumWeight.setText(sodiumTotal + "mg");
                 }
             }
             if (requestCode == LIST_DINNER) {
@@ -387,25 +517,33 @@ public class DiaryActivity extends AppCompatActivity {
                         sodiumDinner += data.getDoubleExtra("sodium", 0);
                     }
 
-
-
-
                         calTotal += calDinner;
                         carbonTotal += carbonDinner;
                         proteinTotal += proteinDinner;
                         fatTotal += proteinDinner;
                         sodiumTotal += sodiumDinner;
-                        dbHelper.insertDataInfo("dinner", calDinner, carbonDinner, proteinDinner, fatDinner, sodiumDinner, breakTotal, foodname_lunch, foodname_dinner);
-//                        dinnerText.setText(foodname_dinner);
+                        dbHelper.insertDataInfo("dinner", calBreak, carbonBreak, proteinBreak, fatBreak, sodiumBreak, breakTotal, foodname_lunch, foodname_dinner,exerName,exerKcal);
 //
-//                        Kcal.setText(calTotal + "kcal");
-//                        CarbonWeight.setText(carbonTotal + "g");
-//                        ProteinWeight.setText(proteinTotal + "g");
-//                        FatWeight.setText(fatTotal + "g");
-//                        SodiumWeight.setText(sodiumTotal + "mg");
+                }
+            }
+            if(requestCode==LIST_EXERCISE){
+                if(resultCode==RESULT_OK){
+                    if(listItem_e==null) {
+                        exerName += data.getStringExtra("exername");
+                        exerKcal+=data.getDoubleExtra("exerkcal",0);
 
+                    }
+                    else {
+                        exerName=listItem_e.getNameExer();
+                        exerName+=data.getStringExtra("exername");
+                        exerKcal=listItem_e.getExerKcal();
+                        exerKcal+=data.getDoubleExtra("exerkcal",0);
+                    }
+                    exerTotal+=exerKcal;
+                    dbHelper.insertDataInfo("exercise",0.0, 0.0, 0.0, 0.0, 0.0, " ", " ", " ",exerName,exerKcal);
 
                 }
             }
         }
+
     }

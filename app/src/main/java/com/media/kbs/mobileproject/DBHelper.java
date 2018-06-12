@@ -33,16 +33,16 @@ public class DBHelper extends SQLiteOpenHelper {
         sb.append("CREATE TABLE IF NOT EXISTS DATEINFO_");
         sb.append(date);
         sb.append(" (_id INTEGER PRIMARY KEY AUTOINCREMENT, time TEXT, kcal double, carbon double, protein double, fat double, sodium double" +
-                ", breakfastt TEXT, luncht TEXT, dinnert TEXT)");
+                ", breakfastt TEXT, luncht TEXT, dinnert TEXT, exercise TEXT, exerkcal double)");
         db.execSQL(sb.toString());
     }
 
-    public void insertDataInfo(String time, double kcal, double carbon, double protein, double fat, double sodium, String breakfast, String lunch, String dinner){
+    public void insertDataInfo(String time, double kcal, double carbon, double protein, double fat, double sodium, String breakfast, String lunch, String dinner,String exercise, double exerKcal){
         SQLiteDatabase db = getWritableDatabase();
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO DATEINFO_");
         sb.append(date);
-        sb.append(" (time, kcal, carbon, protein, fat, sodium, breakfastt, luncht, dinnert) VALUES (\"");
+        sb.append(" (time, kcal, carbon, protein, fat, sodium, breakfastt, luncht, dinnert, exercise, exerkcal) VALUES (\"");
         sb.append(time);
         sb.append("\", ");
         sb.append(kcal);
@@ -62,7 +62,11 @@ public class DBHelper extends SQLiteOpenHelper {
         sb.append("\", ");
         sb.append("\"");
         sb.append(dinner);
+        sb.append("\", ");
         sb.append("\"");
+        sb.append(exercise);
+        sb.append("\",");
+        sb.append(exerKcal);
         sb.append(")");
 
         db.execSQL(sb.toString());
@@ -102,6 +106,8 @@ public class DBHelper extends SQLiteOpenHelper {
             listItem.setNameBreak(cursor.getString(7));
             listItem.setNameLunch(cursor.getString(8));
             listItem.setNameDinner(cursor.getString(9));
+            listItem.setNameExer(cursor.getString(10));
+            listItem.setExerKcal(cursor.getDouble(11));
         }
         return listItem;
     }

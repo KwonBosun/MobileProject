@@ -7,16 +7,16 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/changeFood"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:ems="10"
+        android:hint="@string/foodname"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
-        android:text="@string/foodname"
         android:textColor="@android:color/darker_gray"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,19 +25,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/changeCal"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:ems="10"
+        android:hint="@string/cal"
         android:inputType="number"
         android:selectAllOnFocus="true"
-        android:text="@string/cal"
         android:textColor="@android:color/darker_gray"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/changeFood" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,8 +50,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintStart_toEndOf="@+id/changeCal"
+        app:layout_constraintTop_toBottomOf="@+id/changeFood" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -63,7 +63,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3">
+        app:layout_constraintTop_toBottomOf="@+id/changeCal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText5"
+                    android:id="@+id/changeCarbon"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -132,7 +132,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText6"
+                    android:id="@+id/changeProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -176,7 +176,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText7"
+                    android:id="@+id/changeFat"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -220,7 +220,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText8"
+                    android:id="@+id/changeSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -244,7 +244,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/selected"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
